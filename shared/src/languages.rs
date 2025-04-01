@@ -21,6 +21,7 @@ pub const LANGUAGES: &[&Language] = &[
     &golang(),
     &graphql(),
     &hare(),
+    &haskell(),
     &heex(),
     &html(),
     &idris(),
@@ -357,6 +358,24 @@ const fn hare() -> Language {
         tree_sitter_grammar_config: Some(GrammarConfig {
             id: "hare",
             url: "https://github.com/tree-sitter-grammars/tree-sitter-hare",
+            commit: "master",
+            subpath: None,
+        }),
+        ..Language::new()
+    }
+}
+
+const fn haskell() -> Language {
+    Language {
+        extensions: &["hs"],
+        lsp_command: Some(LspCommand {
+            command: Command("haskell-language-server-wrapper", &[]),
+            initialization_options: None,
+        }),
+        lsp_language_id: Some(LanguageId::new("haskell")),
+        tree_sitter_grammar_config: Some(GrammarConfig {
+            id: "haskell",
+            url: "https://github.com/tree-sitter/tree-sitter-haskell",
             commit: "master",
             subpath: None,
         }),
